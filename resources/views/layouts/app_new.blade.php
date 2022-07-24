@@ -101,7 +101,7 @@ License: For each use you must have a valid license purchased only from above li
 										<span class="menu-icon">
 											<i class="bi bi-justify fs-3"></i>
 										</span>
-										<span class="menu-title">Menu</span>
+										<span class="menu-title">Menus</span>
 									</a>
 								</div>
 								<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
