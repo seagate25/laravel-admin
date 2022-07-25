@@ -17,13 +17,19 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::group(['middleware' => ['auth', 'active']], function() {
-    Route::get('/',function(){
-        return view('auth.login');
-    });
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
+
+Route::get('/',function(){
+    return view('auth.login');
 });
 
-Auth::routes([
-    'register' => false,
-]);
+Route::group(['middleware' => ['auth', 'active']], function() {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/menu', [\App\Http\Controllers\MenuController::class, 'index'])->name('menu.index');
+    Route::get('/menu/create', [\App\Http\Controllers\MenuController::class, 'create'])->name('menu.create');
+    Route::post('/menu', [\App\Http\Controllers\MenuController::class, 'store'])->name('menu.store');
+    Route::get('/menu/{menu}', [\App\Http\Controllers\MenuController::class, 'show'])->name('menu.show');
+    Route::get('/menu/{menu}/edit', [\App\Http\Controllers\MenuController::class, 'edit'])->name('menu.edit');
+    Route::put('/menu/{menu}', [\App\Http\Controllers\MenuController::class, 'update'])->name('menu.update');
+    Route::delete('/menu/{menu}', [\App\Http\Controllers\MenuController::class, 'destroy'])->name('menu.destroy');
+});
